@@ -10,3 +10,11 @@ for an intel 80486 emulator
 
 emulator written by dr. stephen murrell
 (source code: http://rabbit.eng.miami.edu/class/een521/een521.zip)
+
+
+inside this repot
++ newvec / freevec (akin to malloc and free)
++ virtual memory for the 80846 processor
+
+
+
