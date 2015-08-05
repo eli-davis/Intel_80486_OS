@@ -227,7 +227,8 @@ let move_chunk_to_free_list(addr, size) be
     addr ! previous := prev_ptr;
     addr ! next     := next_ptr;
     heap ! (index + 1) := addr;
-    heap ! (index + 2) +:= 1 }
+    heap ! (index + 2) +:= 1 
+}
 
 let free_vec(addr) be
 {
@@ -262,26 +263,29 @@ let print_heap() be
 }
 
 let init_heap(heap_address) be
-{ heap := heap_address;
-  next_free_address := heap + sizeof_array_of_lists + sizeof_meta_data }
+{ 
+    heap := heap_address;
+    next_free_address := heap + sizeof_array_of_lists + sizeof_meta_data 
+}
 
 
 let test_run() be
-{ let x, y, z;
-  x := newvec(10);
-  y := newvec(12);
-  z := newvec(15);
-  out("x = 0x%x\n\n", x);
-  out("y = 0x%x\n\n", y);
-  out("z = 0x%x\n\n", z);
-  print_heap();
-  out("\n\n\n");
-  freevec(x);
-  freevec(y);
-  freevec(z);
-  print_heap();
-  out("\n\n\n");
-  y := newvec(12);
-  z := newvec(11);
-  print_heap();
+{ 
+    let x, y, z;
+    x := newvec(10);
+    y := newvec(12);
+    z := newvec(15);
+    out("x = 0x%x\n\n", x);
+    out("y = 0x%x\n\n", y);
+    out("z = 0x%x\n\n", z);
+    print_heap();
+    out("\n\n\n");
+    freevec(x);
+    freevec(y);
+    freevec(z);
+    print_heap();
+    out("\n\n\n");
+    y := newvec(12);
+    z := newvec(11);
+    print_heap();
 }
