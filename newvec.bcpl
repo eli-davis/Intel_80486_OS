@@ -232,7 +232,7 @@ let move_chunk_to_free_list(addr, size) be
 let free_vec(addr) be
 {
     let size = addr ! chunk_size;
-    out("\nfree 0x%x, IS > 0x%x AND < 0x%x\n", addr, (heap + 45), next_free_address);
+    //out("\nfree 0x%x, IS > 0x%x AND < 0x%x\n", addr, (heap + 45), next_free_address);
     if addr < (heap + 45) \/ addr > next_free_address then
     {
         out("Called freevec on non-heap memory\n");
