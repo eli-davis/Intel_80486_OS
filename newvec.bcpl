@@ -24,11 +24,11 @@ import "io"
 
 // when new_vec is called it first checks the corresponding free list.
 // if adequately sized chunk in the free list is found then
-//    + new_vec returns the adress of that chunk
-//    + and moves that chunk from the free list to the occupied list.
+//  + new_vec returns the adress of that chunk
+//  + and moves that chunk from the free list to the occupied list.
 // else if the free list is empty or does not contain a chunk of adequate size then
-//    + new_vec allocates a chunk of the requested size
-//      + and adds it to the front of the list
+// + new_vec allocates a chunk of the requested size
+// + and adds it to the front of the list
 
 // when free_vec is called the allocated chunk is moved to the appropriate free list
 // to be recycled when new_vec asks for a chunk <= the size of that free chunk
