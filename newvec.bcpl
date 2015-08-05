@@ -156,7 +156,6 @@ let move_free_chunk_to_list(addr, index) be
     {
         (addr ! previous) ! next := addr ! next;
     }
-
     if addr ! next <> nil then
     {
         (addr ! next) ! previous := addr ! previous;
