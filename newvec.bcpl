@@ -13,14 +13,20 @@ import "io"
 // the heap starts with an array 42 words long (0-41)
 // this contains 14 entries, each a pointer (or null)
 // to a doubly linked list of initally unallocated chunks
-// of a delimited size following the pattern:
-//  2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 32768
+// of fourteen ranges in size, following the pattern:
+// 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 32768
 
 // in addition to each of the 14 entries in the array of pointers to lists
 // there are two additonal entries which follow right after the ptr_to_list
 // 0: ptr_to_list
 // 1: ptr_to_free_list
 // 2: items_in_free_list
+
+//  x := newvec(3) would be added to 4's list (>2 and <= 4)
+//  freevev(x) would add the chunk allocated to 4's freelist
+
+//  y := newvec(35) would be added to 64's list (>32 and <= 64)
+//  freevev(y) would add the chunk allocated for y to 64's freelist
 
 // when new_vec is called it first checks the corresponding free list.
 // if adequately sized chunk in the free list is found then
