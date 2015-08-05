@@ -13,8 +13,8 @@ emulator written by dr. stephen murrell
 
 
 inside this repot
-+ newvec / freevec (akin to malloc and free)
-+ virtual memory for the 80846 processor
++ newvec / freevec 
++ virtual memory (for the 80846. 4GB memory = 512 pages * 2048 words per page. word = 32 bits)
 
 
 
