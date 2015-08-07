@@ -14,7 +14,9 @@ emulator written by dr. stephen murrell
 
 inside this repot
 + start.b: virtual memory (for the 80846. 4GB memory = 512 pages * 2048 words per page. word = 32 bits)
+
   page directory with page tables for six separate regions
+
   of virtual address space (user and system code, heap, and stack)
 + os.b: page fault handler to grow heap and stack
   ability to read in and execute user programs
