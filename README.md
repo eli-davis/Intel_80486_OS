@@ -12,18 +12,18 @@ emulator written by dr. stephen murrell
 (source code: http://rabbit.eng.miami.edu/class/een521/een521.zip)  
 
 
-inside this repot  
-+ start.b: virtual memory (for the 80846. 4GB memory = 512 pages * 2048 words per page. word = 32 bits)  
+inside this repot:
++ *start.b*: virtual memory (for the 80846. 4GB memory = 512 pages * 2048 words per page. word = 32 bits)  
   page directory with page tables for six separate regions  
   of virtual address space (user and system code, heap, and stack)  
-+ os.b: page fault handler to grow heap and stack  
++ *os.b*: page fault handler to grow heap and stack  
   ability to read in and execute user programs  
   exit() system call to restore system FP, SP, and PC, set CPU flags and recycle user process pages  
   interrupt based keyboard input system  
   command line shell  
   (in process) queue of runnable processes  
-+ newvec.b: allocating and recycling heap with newvec and freevec  
-+ file_system.b basic file system (mkdir, cd, rmdir, fcreate, fdelete, fopen, fclose, fwrite, fread)  
++ *newvec.b*: allocating and recycling heap with newvec and freevec  
++ *file_system.b* basic file system (mkdir, cd, rmdir, fcreate, fdelete, fopen, fclose, fwrite, fread)  
 
 For now directory entries are limited to one block each (128 words = 512 bytes),  
 which means directories are limited to 16 child files and directories. These child  
@@ -54,13 +54,15 @@ before optimizing. The features being tested are
    set CPU flags, recycle user process pages  
 + interrupt based keyboard input system  
 + + allocating and recycling heap with newvec and freevec  
+  
+  
+  
+In progress  
++ queue of user processes that take turns running  
++ testing fread and fwrite
 
-// In progress  
-// + queue of user processes that take turns running  
-// + testing fread and fwrite
-
-// Next up  
-// + B+ tree to accomodate large files with minimal disc reads  
+Next up  
++ B+ tree to accomodate large files with minimal disc reads  
 
 
 
