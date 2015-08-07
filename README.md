@@ -24,7 +24,8 @@ inside this repot:
   (in process) queue of runnable processes  
 + **newvec.b**: allocating and recycling heap with newvec and freevec  
 + **file_system.b** basic file system (mkdir, cd, rmdir, fcreate, fdelete, fopen, fclose, fwrite, fread)  
-+ **sys_lib.b** basic system call api for user processes
++ **sys_lib.b** basic system call api for user processes  
+
 For now directory entries are limited to one block each (128 words = 512 bytes),  
 which means directories are limited to 16 child files and directories. These child  
 directories are also limited to 16 entries, etc.  
