@@ -13,8 +13,8 @@ import "io"
 // the heap starts with an array 42 words long (0-41)
 // this contains 14 entries, each a pointer (or null)
 // to a doubly linked list of initally unallocated chunks
-// of fourteen ranges in size, following the pattern:
-// 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 32768
+// of a delimited size following the pattern:
+//  2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 32768
 
 // in addition to each of the 14 entries in the array of pointers to lists
 // there are two additonal entries which follow right after the ptr_to_list
@@ -22,19 +22,13 @@ import "io"
 // 1: ptr_to_free_list
 // 2: items_in_free_list
 
-//  x := newvec(3) would be added to 4's list (>2 and <= 4)
-//  freevev(x) would add the chunk allocated to 4's freelist
-
-//  y := newvec(35) would be added to 64's list (>32 and <= 64)
-//  freevev(y) would add the chunk allocated for y to 64's freelist
-
 // when new_vec is called it first checks the corresponding free list.
 // if adequately sized chunk in the free list is found then
-//   + new_vec returns the adress of that chunk
-//   + and moves that chunk from the free list to the occupied list.
+//    + new_vec returns the adress of that chunk
+//    + and moves that chunk from the free list to the occupied list.
 // else if the free list is empty or does not contain a chunk of adequate size then
-//   + new_vec allocates a chunk of the requested size
-//   + and adds it to the front of the list
+//    + new_vec allocates a chunk of the requested size
+//    + and adds it to the front of the list
 
 // when free_vec is called the allocated chunk is moved to the appropriate free list
 // to be recycled when new_vec asks for a chunk <= the size of that free chunk
@@ -156,6 +150,7 @@ let move_free_chunk_to_list(addr, index) be
     {
         (addr ! previous) ! next := addr ! next;
     }
+
     if addr ! next <> nil then
     {
         (addr ! next) ! previous := addr ! previous;
@@ -232,8 +227,7 @@ let move_chunk_to_free_list(addr, size) be
     addr ! previous := prev_ptr;
     addr ! next     := next_ptr;
     heap ! (index + 1) := addr;
-    heap ! (index + 2) +:= 1 
-}
+    heap ! (index + 2) +:= 1 }
 
 let free_vec(addr) be
 {
@@ -268,29 +262,26 @@ let print_heap() be
 }
 
 let init_heap(heap_address) be
-{ 
-    heap := heap_address;
-    next_free_address := heap + sizeof_array_of_lists + sizeof_meta_data 
-}
+{ heap := heap_address;
+  next_free_address := heap + sizeof_array_of_lists + sizeof_meta_data }
 
 
 let test_run() be
-{ 
-    let x, y, z;
-    x := newvec(10);
-    y := newvec(12);
-    z := newvec(15);
-    out("x = 0x%x\n\n", x);
-    out("y = 0x%x\n\n", y);
-    out("z = 0x%x\n\n", z);
-    print_heap();
-    out("\n\n\n");
-    freevec(x);
-    freevec(y);
-    freevec(z);
-    print_heap();
-    out("\n\n\n");
-    y := newvec(12);
-    z := newvec(11);
-    print_heap();
+{ let x, y, z;
+  x := newvec(10);
+  y := newvec(12);
+  z := newvec(15);
+  out("x = 0x%x\n\n", x);
+  out("y = 0x%x\n\n", y);
+  out("z = 0x%x\n\n", z);
+  print_heap();
+  out("\n\n\n");
+  freevec(x);
+  freevec(y);
+  freevec(z);
+  print_heap();
+  out("\n\n\n");
+  y := newvec(12);
+  z := newvec(11);
+  print_heap();
 }
