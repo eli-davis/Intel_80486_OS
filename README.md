@@ -1,5 +1,4 @@
-# mini_OS
-  
+ 
 written in a slightly modified version of BCPL  
 (http://rabbit.eng.miami.edu/class/een521/bcpl-2.pdf)  
 
